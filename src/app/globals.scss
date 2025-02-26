@@ -1,0 +1,31 @@
+:root {
+    --border-color: #e0e0e0;
+    --background-color: #f4f5f9;
+    --font-color: #42567a;
+    --violet-color: #5d5fef;
+    --pink-color: #ef5da8;
+}
+
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'PT Sans', Arial, Helvetica, sans-serif;
+    color: var(--font-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
