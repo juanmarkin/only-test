@@ -4,6 +4,7 @@ import { useState } from 'react';
 import styles from './page.module.scss';
 import { DateSlider } from '@/components/date-slider';
 import { slides } from '@/models/slides-data';
+import { EventsSlider } from '@/components/events-slider';
 
 export enum SlideDirection {
     PREV,
@@ -28,8 +29,9 @@ export default function Home() {
                     onSlideChange={changeSlide}
                     slides={slides}
                     activeSlideIndex={activeSlide}
+                    onSelect={(slideIndex) => setActiveSlide(slideIndex)}
                 />
-                <div className={styles.bottomSlider}></div>
+                <EventsSlider slides={slides} activeSlideIndex={activeSlide} />
             </div>
         </div>
     );

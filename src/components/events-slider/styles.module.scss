@@ -1,0 +1,107 @@
+.slider {
+    position: relative;
+    padding: 0 var(--wrapper-padding-left);
+    margin-top: auto;
+
+    @media (max-width: 768px) {
+        padding: 20px 0 0 20px;
+    }
+
+    &::before {
+        content: '';
+        width: calc(100% - 40px);
+        height: 1px;
+        background: var(--border-color);
+        position: absolute;
+        left: 20px;
+        top: 0;
+
+        @media (min-width: 769px) {
+            display: none;
+        }
+    }
+
+    &__slide {
+        @media (max-width: 768px) {
+            width: 60% !important;
+        }
+    }
+
+    &__event {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &__year {
+        font-family: var(--font-bebas-neue);
+        font-size: 25px;
+        color: var(--violet-color);
+
+        @media (max-width: 768px) {
+            font-size: 16px;
+        }
+    }
+
+    &__description {
+        font-size: 16px;
+        line-height: 1.5;
+
+        @media (min-width: 1920px) {
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 14px;
+        }
+    }
+
+    &__button {
+        display: flex;
+        background: none;
+        border: none;
+        width: auto;
+        height: auto;
+        position: absolute;
+
+        @media (max-width: 768px) {
+            display: none !important;
+        }
+
+        &::before,
+        &::after {
+            display: none;
+        }
+
+        &_prev {
+            left: 30px !important;
+        }
+
+        &_next {
+            right: 30px !important;
+        }
+    }
+
+    &__pagination {
+        display: flex;
+        gap: 10px;
+        position: fixed !important;
+        bottom: 40px !important;
+        left: 50% !important;
+        width: fit-content !important;
+        transform: translateX(-50%) !important;
+
+        @media (min-width: 769px) {
+            display: none !important;
+        }
+
+        span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(#42567a, 0.4);
+            opacity: 1;
+            margin: 0 !important;
+        }
+    }
+}

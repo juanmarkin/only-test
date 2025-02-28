@@ -5,6 +5,7 @@ import styles from './styles.module.scss';
 import { SlideDirection } from '@/app/page';
 import { SliderButton, SliderButtonEnum } from '../slider-button';
 import { useEffect, useState } from 'react';
+import { CircleSlider } from '../circle-slider';
 
 enum DirectionEnum {
     LEFT,
@@ -15,9 +16,10 @@ interface Props {
     onSlideChange: (direction: SlideDirection) => void;
     slides: ISlide[];
     activeSlideIndex: number;
+    onSelect: (slideIndex: number) => void;
 }
 
-export function DateSlider({ onSlideChange, slides, activeSlideIndex }: Props) {
+export function DateSlider({ onSlideChange, slides, activeSlideIndex, onSelect }: Props) {
     const [directionContext, setDirectionContext] = useState<DirectionEnum>(DirectionEnum.RIGHT);
     const activeSlide = slides[activeSlideIndex] || slides[0];
     const prevSlide =
@@ -35,6 +37,11 @@ export function DateSlider({ onSlideChange, slides, activeSlideIndex }: Props) {
             target: number,
             setter: (value: number) => void,
         ) => {
+            if (prev === target) {
+                setter(0);
+                setTimeout(() => setter(prev), 10);
+            }
+
             let current = prev;
             const step = current < target ? 1 : -1;
 
@@ -73,6 +80,14 @@ export function DateSlider({ onSlideChange, slides, activeSlideIndex }: Props) {
                     <span className={styles.slider__yearStart}>{yearStart}</span>
                     <span className={styles.slider__yearEnd}>{yearEnd}</span>
                 </div>
+
+                <div className={styles.slider__circleSlider}>
+                    <CircleSlider
+                        slides={slides}
+                        activeSlideIndex={activeSlideIndex}
+                        onSelect={onSelect}
+                    />
+                </div>
             </div>
 
             <div className={styles.slider__controls}>
@@ -86,6 +101,7 @@ export function DateSlider({ onSlideChange, slides, activeSlideIndex }: Props) {
                             setDirectionContext(DirectionEnum.LEFT);
                         }}
                         disabled={activeSlideIndex < 1 || isAnimating}
+                        disabledStyle={activeSlideIndex < 1}
                     />
                     <SliderButton
                         onClick={() => {
@@ -93,6 +109,7 @@ export function DateSlider({ onSlideChange, slides, activeSlideIndex }: Props) {
                             setDirectionContext(DirectionEnum.RIGHT);
                         }}
                         disabled={activeSlideIndex >= slides.length - 1 || isAnimating}
+                        disabledStyle={activeSlideIndex >= slides.length - 1}
                         direction={SliderButtonEnum.Next}
                     />
                 </div>

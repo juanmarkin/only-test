@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex: none;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -17,12 +18,33 @@
         cursor: pointer;
     }
 
-    &:disabled {
+    &_disabled {
         opacity: 0.5;
+    }
+
+    &_small {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: white;
+        box-shadow: 0px 0px 15px rgba(56, 119, 238, 0.1);
+    }
+
+    &_regular {
+        @media (max-width: 768px) {
+            width: 25px;
+            height: 25px;
+        }
     }
 
     &__arrow {
         font-size: 0;
+
+        svg {
+            @media (max-width: 768px) {
+                transform: scale(0.7);
+            }
+        }
     }
 
     &_next &__arrow {

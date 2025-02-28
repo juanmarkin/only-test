@@ -1,12 +1,44 @@
 .page {
     background: var(--background-color);
     padding: 0 8.4vw 0 16.7vw;
+
+    @media (max-width: 768px) {
+        padding: 0;
+    }
 }
 
 .wrapper {
+    display: flex;
+    flex-direction: column;
     min-height: 100svh;
     border-left: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
+    position: relative;
+    padding-bottom: 7vh;
+
+    @media (min-width: 1920px) {
+        padding-bottom: 104px;
+    }
+
+    @media (max-width: 768px) {
+        border: none;
+        padding-bottom: 24.6vh;
+    }
+
+    &::before {
+        content: '';
+        height: 100%;
+        width: 1px;
+        background: var(--border-color);
+        position: absolute;
+        top: 0;
+        left: 50%;
+        z-index: 0;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
 }
 
 /* Enable hover only on non-touch devices */
