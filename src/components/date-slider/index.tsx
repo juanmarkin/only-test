@@ -97,7 +97,9 @@ export function DateSlider({ onSlideChange, slides, activeSlideIndex, onSelect }
                 <div className={styles.slider__buttons}>
                     <SliderButton
                         onClick={() => {
-                            activeSlideIndex > 0 && onSlideChange(SlideDirection.PREV);
+                            if (activeSlideIndex > 0) {
+                                onSlideChange(SlideDirection.PREV);
+                            }
                             setDirectionContext(DirectionEnum.LEFT);
                         }}
                         disabled={activeSlideIndex < 1 || isAnimating}
