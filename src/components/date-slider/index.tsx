@@ -2,10 +2,10 @@
 
 import { ISlide } from '@/models/slides-data';
 import styles from './styles.module.scss';
-import { SlideDirection } from '@/app/page';
 import { SliderButton, SliderButtonEnum } from '../slider-button';
 import { useEffect, useState } from 'react';
 import { CircleSlider } from '../circle-slider';
+import { SlideDirection } from '../main-slider';
 
 enum DirectionEnum {
     LEFT,
